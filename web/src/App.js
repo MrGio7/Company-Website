@@ -1,9 +1,13 @@
-import React from 'react';
+import React from "react";
+
+import Navigation from "./Components/Navigation";
+
+import { Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Company Website</h1>
+    <div>
+      <Navigation />
     </div>
   );
 }
