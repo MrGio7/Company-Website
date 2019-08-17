@@ -7,23 +7,23 @@ const Navigation = () => {
   return (
     <div>
       <Nav justify variant="tabs" defaultActiveKey="link-1">
-        <LinkContainer to="/">
-          <Nav.Item>
+        <Nav.Item>
+          <LinkContainer to="/">
             <Nav.Link eventKey="link-1">Home</Nav.Link>
-          </Nav.Item>
-        </LinkContainer>
+          </LinkContainer>
+        </Nav.Item>
 
-        <LinkContainer to="/product">
-          <Nav.Item>
+        <Nav.Item>
+          <LinkContainer to="/product">
             <Nav.Link eventKey="link-2">Product</Nav.Link>
-          </Nav.Item>
-        </LinkContainer>
+          </LinkContainer>
+        </Nav.Item>
 
-        <LinkContainer to="/about">
-          <Nav.Item>
+        <Nav.Item>
+          <LinkContainer to="/about">
             <Nav.Link eventKey="link-3">About</Nav.Link>
-          </Nav.Item>
-        </LinkContainer>
+          </LinkContainer>
+        </Nav.Item>
       </Nav>
     </div>
   );
