@@ -24,6 +24,12 @@ const Navigation = () => {
             <Nav.Link eventKey="link-3">About</Nav.Link>
           </LinkContainer>
         </Nav.Item>
+
+        <Nav.Item>
+          <LinkContainer to="/login">
+            <Nav.Link eventKey="link-4">Login</Nav.Link>
+          </LinkContainer>
+        </Nav.Item>
       </Nav>
     </div>
   );

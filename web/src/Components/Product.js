@@ -12,25 +12,25 @@ const Product = () => {
     {
       name: "myne",
       description: "this is very good product",
-      img: 'https://i1217.photobucket.com/albums/dd388/jnelson9r/J%20Nelson%20Real%20Estate/JNELSONREALESTATE5.jpg',
+      img: 'https://picsum.photos/id/237/200/300',
       price: "80$"
     },
     {
       name: "nya",
       description: "this is not  product",
-      img: 'https://i718.photobucket.com/albums/ww187/talisson_01/House_of____by_dechobek.jpg',
+      img: 'https://picsum.photos/id/235/200/300',
       price: "0$"
     },
     {
       name: "jimi",
       description: "are u kiddin me",
-      img: 'https://i865.photobucket.com/albums/ab218/zola_wagner/Backofhouse.jpg',
+      img: 'https://picsum.photos/id/232/200/300',
       price: "2000$"
     },
     {
       name: "gulie",
       description: "god damn it",
-      img: 'https://i1217.photobucket.com/albums/dd388/jnelson9r/J%20Nelson%20Real%20Estate/JNELSONREALESTATE4.jpg',
+      img: 'https://picsum.photos/id/231/200/300',
       price: "2$"
     }
   ];
