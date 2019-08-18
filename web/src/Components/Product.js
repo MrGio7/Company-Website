@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import "../style/product.scss";
+
 const Product = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("this is very good product");
@@ -20,13 +22,18 @@ const Product = () => {
       name: "jimi",
       description: "are u kiddin me",
       price: "2000$"
+    },
+    {
+      name: "gulie",
+      description: "god damn it",
+      price: "2$"
     }
   ];
 
   return (
-    <div>
+    <div className="productPage">
       {customList.map((item, index) => (
-        <div key={index}>
+        <div className="product" key={index}>
           <h1>Name: {item.name}</h1>
           <p>Description: {item.description}</p>
           <h2>Price: {item.price}</h2>

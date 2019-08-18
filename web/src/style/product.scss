@@ -1,0 +1,13 @@
+.productPage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .product {
+    width: 26%;
+    margin: 10px 0;
+    border: 2px solid gray;
+    border-radius: 10px;
+    padding: 0 10px;
+  }
+}
