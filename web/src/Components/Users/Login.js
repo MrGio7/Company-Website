@@ -4,15 +4,30 @@ import { Form, Button } from "react-bootstrap";
 import "../../style/Users/Login.scss";
 
 const Login = () => {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+  const [values, setValues] = useState({ userName: "", password: "" });
+
+  const changeHandler = ev => {
+    ev.persist();
+    setValues(values => ({
+      ...values,
+      [ev.target.name]: ev.target.value
+    }));
+  };
+
+  console.log(values);
 
   return (
     <div className="loginPage">
       <Form>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>UserName</Form.Label>
-          <Form.Control type="string" placeholder="Enter UserName" />
+          <Form.Control
+            type="text"
+            placeholder="Enter UserName"
+            onChange={changeHandler}
+            name="userName"
+            value={values.userName}
+          />
           <Form.Text className="text-muted">
             We'll never share your password with anyone else.
           </Form.Text>
@@ -20,7 +35,13 @@ const Login = () => {
 
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
+          <Form.Control
+            type="password"
+            placeholder="Password"
+            onChange={changeHandler}
+            name="password"
+            value={values.password}
+          />
         </Form.Group>
         <Button variant="primary" type="submit">
           Submit
