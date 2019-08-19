@@ -8,7 +8,7 @@ exports.up = function(knex) {
 
     product.string("img", 255).notNullable();
 
-    product.string("price", 255).notNullable();
+    product.integer("price").notNullable();
   });
 };
 
