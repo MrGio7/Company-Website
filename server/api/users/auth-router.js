@@ -15,4 +15,22 @@ router.post("/register", (req, res) => {
     });
 });
 
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  db("users")
+    .where({ username })
+    .first()
+    .then(user => {
+      if (user) {
+        res.status(200).json({ message: `welcome user ${user.username}` });
+      } else {
+        res.status(401).json("invalid credentials");
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
