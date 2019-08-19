@@ -1,12 +1,19 @@
 const router = require("express").Router();
 const knex = require("knex");
 const knexConfig = require("../../knexfile.js");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const secrets = require("../../config/secrets.js");
 
 const db = knex(knexConfig.development);
 
 router.post("/register", (req, res) => {
+  const user = req.body;
+  const hash = bcrypt.hashSync(user.password, 10);
+  user.password = hash;
+
   db("users")
-    .insert(req.body)
+    .insert(user)
     .then(saved => {
       res.status(201).json(saved);
     })
@@ -22,8 +29,11 @@ router.post("/login", (req, res) => {
     .where({ username })
     .first()
     .then(user => {
-      if (user) {
-        res.status(200).json({ message: `welcome user ${user.username}` });
+      if (user && bcrypt.compareSync(password, user.password)) {
+        const token = generateToken(user);
+        res
+          .status(200)
+          .json({ message: `welcome user ${user.username}`, token });
       } else {
         res.status(401).json("invalid credentials");
       }
@@ -32,5 +42,19 @@ router.post("/login", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+function generateToken(user) {
+  const payload = {
+    subject: user.id,
+    user: user.username,
+    authority: user.department
+  };
+
+  const options = {
+    expiresIn: "1d"
+  };
+
+  return jwt.sign(payload, secrets.jwtSecret, options);
+}
 
 module.exports = router;
