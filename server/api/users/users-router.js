@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const knex = require("knex");
 const knexConfig = require("../../knexfile.js");
+const restricted = require("./restricted-middleware.js");
 
 const db = knex(knexConfig.development);
 
-router.get("/", (req, res) => {
+router.get("/", restricted, (req, res) => {
   db("users")
     .then(users => {
       res.status(201).json(users);
