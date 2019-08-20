@@ -15,4 +15,17 @@ router.get("/", restricted, (req, res) => {
     });
 });
 
+router.post("/add", (req, res) => {
+  const product = req.body;
+
+  db("product")
+    .insert(product)
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
