@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button, Alert } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import "../../style/Users/Login.scss";
 
@@ -58,9 +59,17 @@ const Login = () => {
             value={user.password}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <div className="btns">
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+
+          <LinkContainer to="/register">
+            <Button variant="secondary" type="button">
+              Register
+            </Button>
+          </LinkContainer>
+        </div>
       </Form>
     </div>
   );
