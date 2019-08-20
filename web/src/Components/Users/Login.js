@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 import "../../style/Users/Login.scss";
