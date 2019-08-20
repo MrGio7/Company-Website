@@ -4,11 +4,16 @@ import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Navigation = () => {
+  const LogOut = () => {
+    localStorage.removeItem("token");
+    window.location.pathname = "/home";
+  };
+
   return (
     <div>
       <Nav justify variant="tabs" defaultActiveKey="link-1">
         <Nav.Item>
-          <LinkContainer to="/">
+          <LinkContainer to="/home">
             <Nav.Link eventKey="link-1">Home</Nav.Link>
           </LinkContainer>
         </Nav.Item>
@@ -25,11 +30,17 @@ const Navigation = () => {
           </LinkContainer>
         </Nav.Item>
 
-        <Nav.Item>
-          <LinkContainer to="/login">
-            <Nav.Link eventKey="link-4">Login</Nav.Link>
-          </LinkContainer>
-        </Nav.Item>
+        {!localStorage.token ? (
+          <Nav.Item>
+            <LinkContainer to="/login">
+              <Nav.Link eventKey="link-4">Login</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+        ) : (
+          <Nav.Item onClick={LogOut}>
+            <Nav.Link eventKey="link-5">LogOut</Nav.Link>
+          </Nav.Item>
+        )}
       </Nav>
     </div>
   );

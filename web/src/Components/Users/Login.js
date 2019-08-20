@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 
 import "../../style/Users/Login.scss";
 
@@ -23,9 +23,11 @@ const Login = () => {
         console.log(res);
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
+        window.location.pathname = "/home";
       })
       .catch(err => {
         console.log(err);
+        alert("Invalid Credentials");
       });
   };
 
