@@ -11,6 +11,14 @@ const AddProduct = () => {
     price: ""
   });
 
+  const changeHandler = ev => {
+    ev.persist();
+    setUser(user => ({
+      ...user,
+      [ev.target.name]: ev.target.value
+    }));
+  };
+
   return (
     <div className="add-product">
       <Form>
