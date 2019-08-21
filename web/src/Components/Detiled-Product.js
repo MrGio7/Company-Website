@@ -1,25 +1,43 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const DetiledProd = () => {
-  const [data, setData] = useState({ productList: [] });
+import { Jumbotron, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
-  useEffect(id => {
+const DetiledProd = props => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const id = props.match.params.id;
     axios
       .get(`http://localhost:5000/api/product/${id}`, {
         headers: { token: localStorage.token }
       })
       .then(res => {
-        setData(() => ({ productList: res.data }));
+        setData(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
-    <div className="detiled">
-      <h1>Detiled Page</h1>
+    <div>
+      {data.map((item, index) => (
+        <Jumbotron key={index} className="detiled">
+          <div className="description">
+            <h1>{item.name}</h1>
+            <p>{item.description}</p>
+            <h2>{item.price}$</h2>
+            <p>
+              <LinkContainer to="/product">
+                <Button variant="primary">Go Back</Button>
+              </LinkContainer>
+            </p>
+          </div>
+          <img src={item.img} alt="avatar" id="detiledImg" />
+        </Jumbotron>
+      ))}
     </div>
   );
 };

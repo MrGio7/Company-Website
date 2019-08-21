@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Button, Alert } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 import "../style/product.scss";
 
@@ -14,7 +15,6 @@ const Product = () => {
       })
       .then(res => {
         setData(res.data);
-        console.log("gio ylea");
       })
       .catch(err => {
         console.log(err);
@@ -42,7 +42,9 @@ const Product = () => {
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>Price: {item.price}</Card.Text>
-                <Button variant="primary">View Detiled</Button>
+                <LinkContainer to={`/product/${item.id}`}>
+                  <Button variant="primary">View Detiled</Button>
+                </LinkContainer>
               </Card.Body>
             </Card>
           ))}

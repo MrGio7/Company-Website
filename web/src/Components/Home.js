@@ -9,8 +9,8 @@ const Home = () => {
   return (
     <div className="homePage">
       <div className="top">
-        <img src={header2} id="no2" />
-        <img src={header1} id="no1" />
+        <img src={header2} id="no2" alt="header" />
+        <img src={header1} id="no1" alt="header" />
       </div>
       <div className="content">
         <Jumbotron fluid>

@@ -11,3 +11,18 @@
     height: 300px;
   }
 }
+
+.detiled {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem;
+
+  img {
+    border-radius: 5px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+  }
+}
