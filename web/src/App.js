@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Navigation, Home, Product, About } from "./Components";
+import { Navigation, Home, Product, About, AddProduct } from "./Components";
 import Login from "./Components/Users/Login";
 import Register from "./Components/Users/Regiser.js";
 
@@ -15,6 +15,7 @@ function App() {
       <Route exact path="/about" component={About} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/AddProduct" component={AddProduct} />
     </div>
   );
 }

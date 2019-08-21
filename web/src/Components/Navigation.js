@@ -2,6 +2,7 @@ import React from "react";
 
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
+import "../style/Navigation.scss";
 
 const Navigation = () => {
   const LogOut = () => {
@@ -30,15 +31,23 @@ const Navigation = () => {
           </LinkContainer>
         </Nav.Item>
 
+        {!localStorage.token ? null : (
+          <Nav.Item>
+            <LinkContainer to="/addproduct">
+              <Nav.Link eventKey="link-4">Add Product</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+        )}
+
         {!localStorage.token ? (
           <Nav.Item>
             <LinkContainer to="/login">
-              <Nav.Link eventKey="link-4">Login</Nav.Link>
+              <Nav.Link eventKey="link-5">Login</Nav.Link>
             </LinkContainer>
           </Nav.Item>
         ) : (
           <Nav.Item onClick={LogOut}>
-            <Nav.Link eventKey="link-5">LogOut</Nav.Link>
+            <Nav.Link eventKey="link-6">LogOut</Nav.Link>
           </Nav.Item>
         )}
       </Nav>

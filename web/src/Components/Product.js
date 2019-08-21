@@ -5,13 +5,6 @@ import { Card, Button } from "react-bootstrap";
 import "../style/product.scss";
 
 const Product = () => {
-  const [product, setProduct] = useState({
-    name: "",
-    description: "",
-    img: "",
-    price: ""
-  });
-
   const [data, setData] = useState({ productList: [] });
 
   useEffect(() => {
