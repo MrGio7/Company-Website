@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import "../style/Add-Product.scss";
 
 const AddProduct = () => {
@@ -13,10 +13,36 @@ const AddProduct = () => {
 
   const changeHandler = ev => {
     ev.persist();
-    setUser(user => ({
-      ...user,
+    setProduct(product => ({
+      ...product,
       [ev.target.name]: ev.target.value
     }));
+  };
+
+  const newProdHandler = ev => {
+    ev.preventDefault();
+    axios
+      .post(`http://localhost:5000/api/product/add`, product)
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        <Alert variant="success">
+          <Alert.Heading>Hey, nice to see you</Alert.Heading>
+          <p>
+            Aww yeah, you successfully read this important alert message. This
+            example text is going to run a bit longer so that you can see how
+            spacing within an alert works with this kind of content.
+          </p>
+          <hr />
+          <p className="mb-0">
+            Whenever you need to, be sure to use margin utilities to keep things
+            nice and tidy.
+          </p>
+        </Alert>;
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
