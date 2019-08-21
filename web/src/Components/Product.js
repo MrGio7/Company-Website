@@ -41,7 +41,7 @@ const Product = () => {
               <Card.Img variant="top" src={item.img} />
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
-                <Card.Text>Price: {item.price}</Card.Text>
+                <Card.Text>Price: {item.price}$</Card.Text>
                 <LinkContainer to={`/product/${item.id}`}>
                   <Button variant="primary">View Detiled</Button>
                 </LinkContainer>
