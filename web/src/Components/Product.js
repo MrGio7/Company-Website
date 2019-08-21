@@ -5,7 +5,7 @@ import { Card, Button, Alert } from "react-bootstrap";
 import "../style/product.scss";
 
 const Product = () => {
-  const [data, setData] = useState({ productList: [] });
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios
@@ -13,12 +13,13 @@ const Product = () => {
         headers: { token: localStorage.token }
       })
       .then(res => {
-        setData(() => ({ productList: res.data }));
+        setData(res.data);
+        console.log("gio ylea");
       })
       .catch(err => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -35,7 +36,7 @@ const Product = () => {
         </div>
       ) : (
         <div className="productPage">
-          {data.productList.map((item, index) => (
+          {data.map((item, index) => (
             <Card style={{ width: "18rem" }} key={index}>
               <Card.Img variant="top" src={item.img} />
               <Card.Body>
