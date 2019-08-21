@@ -1,0 +1,54 @@
+.homePage {
+  .top {
+    display: flex;
+
+    #no1 {
+      width: 50%;
+      position: relative;
+      animation: slide-left 2s 1;
+    }
+
+    #no2 {
+      width: 50%;
+      position: relative;
+      animation: slide-right 2s 1;
+    }
+  }
+
+  .content {
+    padding: 0 1.2rem;
+    position: relative;
+    animation: slide-bottom 1s 1;
+
+    .jumbotron-fluid {
+      border-radius: 10px;
+    }
+  }
+}
+
+@keyframes slide-left {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    right: 50%;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes slide-bottom {
+  from {
+    top: 500px;
+  }
+  to {
+    top: 0;
+  }
+}
