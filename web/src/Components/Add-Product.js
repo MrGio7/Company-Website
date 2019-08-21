@@ -26,19 +26,7 @@ const AddProduct = () => {
       .then(res => {
         console.log(res);
         console.log(res.data);
-        <Alert variant="success">
-          <Alert.Heading>Hey, nice to see you</Alert.Heading>
-          <p>
-            Aww yeah, you successfully read this important alert message. This
-            example text is going to run a bit longer so that you can see how
-            spacing within an alert works with this kind of content.
-          </p>
-          <hr />
-          <p className="mb-0">
-            Whenever you need to, be sure to use margin utilities to keep things
-            nice and tidy.
-          </p>
-        </Alert>;
+        alert("congrats U have successfully added new product");
       })
       .catch(err => {
         console.log(err);
@@ -47,10 +35,16 @@ const AddProduct = () => {
 
   return (
     <div className="add-product">
-      <Form>
+      <Form onSubmit={newProdHandler}>
         <Form.Group controlId="formBasicText">
           <Form.Label>Name</Form.Label>
-          <Form.Control type="text" placeholder="Enter Name" />
+          <Form.Control
+            type="text"
+            placeholder="Enter Name"
+            onChange={changeHandler}
+            name="name"
+            value={product.name}
+          />
           <Form.Text className="text-muted">
             We'll never share your password with anyone else.
           </Form.Text>
@@ -58,17 +52,35 @@ const AddProduct = () => {
 
         <Form.Group controlId="formBasicText">
           <Form.Label>Description</Form.Label>
-          <Form.Control type="text" placeholder="Description" />
+          <Form.Control
+            type="text"
+            placeholder="Description"
+            onChange={changeHandler}
+            name="description"
+            value={product.description}
+          />
         </Form.Group>
 
         <Form.Group controlId="formBasicText">
           <Form.Label>Image</Form.Label>
-          <Form.Control type="text" placeholder="Image URL" />
+          <Form.Control
+            type="text"
+            placeholder="Image URL"
+            onChange={changeHandler}
+            name="img"
+            value={product.img}
+          />
         </Form.Group>
 
         <Form.Group controlId="formBasicText">
           <Form.Label>Price: $</Form.Label>
-          <Form.Control type="text" placeholder="Product Price in USD" />
+          <Form.Control
+            type="text"
+            placeholder="Product Price in USD"
+            onChange={changeHandler}
+            name="price"
+            value={product.price}
+          />
         </Form.Group>
         <Button variant="primary" type="submit">
           Add
