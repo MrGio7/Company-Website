@@ -2,9 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px 0;
 
-  .card-img-top{
+  .card {
+    margin-top: 20px;
+  }
+
+  .card-img-top {
     height: 300px;
   }
 }
