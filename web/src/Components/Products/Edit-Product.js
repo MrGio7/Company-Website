@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import { Jumbotron, Button, Form } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 
 const EditProduct = props => {
   const [data, setData] = useState({
@@ -14,8 +13,8 @@ const EditProduct = props => {
 
   const changeHandler = ev => {
     ev.persist();
-    setData(product => ({
-      ...product,
+    setData(data => ({
+      ...data,
       [ev.target.name]: ev.target.value
     }));
   };
@@ -41,6 +40,23 @@ const EditProduct = props => {
       });
   }, []);
 
+  const editProdHandler = ev => {
+    ev.preventDefault();
+    const id = props.match.params.id;
+    axios
+      .put(`http://localhost:5000/api/product/${id}`, data, {
+        headers: { token: localStorage.token }
+      })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+        alert("congrats U have successfully edited product");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <Jumbotron className="detiled">
@@ -51,6 +67,7 @@ const EditProduct = props => {
               placeholder="Name"
               value={data.name}
               onChange={changeHandler}
+              name="name"
             />
             <Form.Control
               size="sm"
@@ -58,12 +75,14 @@ const EditProduct = props => {
               placeholder="Description"
               value={data.description}
               onChange={changeHandler}
+              name="description"
             />
             <Form.Control
               type="text"
               placeholder="Price"
               value={data.price}
               onChange={changeHandler}
+              name="price"
             />
           </div>
           <div className="detImg">
@@ -73,11 +92,14 @@ const EditProduct = props => {
               placeholder="Img src"
               value={data.img}
               onChange={changeHandler}
+              name="img"
             />
           </div>
         </div>
 
-        <Button variant="primary">Save</Button>
+        <Button variant="primary" onClick={editProdHandler}>
+          Save
+        </Button>
       </Jumbotron>
     </div>
   );
