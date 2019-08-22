@@ -48,9 +48,7 @@ const EditProduct = props => {
         headers: { token: localStorage.token }
       })
       .then(res => {
-        console.log(res);
-        console.log(res.data);
-        alert("congrats U have successfully edited product");
+        props.history.push(`/product/${id}`);
       })
       .catch(err => {
         console.log(err);

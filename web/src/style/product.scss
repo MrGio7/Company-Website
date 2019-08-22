@@ -33,8 +33,13 @@
     }
   }
 
-  .btn{
-    margin-top:3rem;
+  .btn {
+    margin-top: 3rem;
     align-self: flex-start;
   }
+}
+
+.detiledBtns {
+  display: flex;
+  justify-content: space-between;
 }

@@ -35,10 +35,15 @@ const DetiledProd = props => {
               <img src={item.img} alt="avatar" />
             </div>
           </div>
+          <div className="detiledBtns">
+            <LinkContainer to="/product">
+              <Button variant="primary">Go Back</Button>
+            </LinkContainer>
 
-          <LinkContainer to="/product">
-            <Button variant="primary">Go Back</Button>
-          </LinkContainer>
+            <LinkContainer to={`/product/edit/${item.id}`}>
+              <Button variant="dark">Edit</Button>
+            </LinkContainer>
+          </div>
         </Jumbotron>
       ))}
     </div>
