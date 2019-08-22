@@ -26,16 +26,19 @@ const DetiledProd = props => {
       {data.map((item, index) => (
         <Jumbotron key={index} className="detiled">
           <div className="description">
-            <h1>{item.name}</h1>
-            <p>{item.description}</p>
-            <h2>{item.price}$</h2>
-            <p>
-              <LinkContainer to="/product">
-                <Button variant="primary">Go Back</Button>
-              </LinkContainer>
-            </p>
+            <div className="detText">
+              <h1>{item.name}</h1>
+              <p>{item.description}</p>
+              <h2>{item.price}$</h2>
+            </div>
+            <div className="detImg">
+              <img src={item.img} alt="avatar" />
+            </div>
           </div>
-          <img src={item.img} alt="avatar" id="detiledImg" />
+        
+          <LinkContainer to="/product">
+            <Button variant="primary">Go Back</Button>
+          </LinkContainer>
         </Jumbotron>
       ))}
     </div>
