@@ -20,6 +20,7 @@ router.get("/:id", restricted, (req, res) => {
 
   db("product")
     .where({ id })
+    .first()
     .then(saved => {
       res.status(201).json(saved);
     })

@@ -6,7 +6,8 @@ import {
   Product,
   About,
   AddProduct,
-  DetiledProd
+  DetiledProd,
+  EditProduct
 } from "./Components";
 import Login from "./Components/Users/Login";
 import Register from "./Components/Users/Regiser.js";
@@ -16,7 +17,7 @@ import { Route } from "react-router-dom";
 function App() {
   return (
     <div>
-      <Route path='/' component={Navigation} />
+      <Route path="/" component={Navigation} />
       <Route exact path="/" component={Home} />
       <Route exact path="/home" component={Home} />
       <Route exact path="/product" component={Product} />
@@ -25,6 +26,7 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/AddProduct" component={AddProduct} />
       <Route exact path="/product/:id" component={DetiledProd} />
+      <Route exact path="/product/edit/:id" component={EditProduct} />
     </div>
   );
 }
