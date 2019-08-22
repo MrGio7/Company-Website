@@ -35,7 +35,7 @@ const DetiledProd = props => {
               <img src={item.img} alt="avatar" />
             </div>
           </div>
-        
+
           <LinkContainer to="/product">
             <Button variant="primary">Go Back</Button>
           </LinkContainer>
