@@ -31,7 +31,7 @@ const EditProduct = props => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   const editProdHandler = ev => {
     ev.preventDefault();

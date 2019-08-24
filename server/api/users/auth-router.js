@@ -5,6 +5,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secrets = require("../../config/secrets.js");
 
+const restricted = require("./restricted-middleware.js");
+
 const db = knex(knexConfig.development);
 
 router.post("/register", (req, res) => {
@@ -43,9 +45,24 @@ router.post("/login", (req, res) => {
     });
 });
 
+router.get("/user", restricted, (req, res) => {
+  const id = req.userBody.id;
+
+  db("users")
+    .where({ id })
+    .first()
+    .then(user => {
+      res.status(201).json(req.userBody);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 function generateToken(user) {
   const payload = {
-    subject: user.id,
+    id: user.id,
     user: user.username,
     authority: user.department
   };

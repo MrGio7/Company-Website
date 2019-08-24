@@ -6,6 +6,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 const DetiledProd = props => {
   const [data, setData] = useState({});
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -15,6 +16,19 @@ const DetiledProd = props => {
       })
       .then(res => {
         setData(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [props.match.params.id]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/auth/user`, {
+        headers: { token: localStorage.token }
+      })
+      .then(res => {
+        setUser(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -37,8 +51,6 @@ const DetiledProd = props => {
       });
   };
 
-  console.log(data);
-
   return (
     <div>
       <Jumbotron className="detiled">
@@ -56,14 +68,16 @@ const DetiledProd = props => {
           <LinkContainer to="/product">
             <Button variant="primary">Go Back</Button>
           </LinkContainer>
-          <div>
-            <LinkContainer to={`/product/edit/${data.id}`}>
-              <Button variant="dark">Edit</Button>
-            </LinkContainer>
-            <Button variant="danger" onClick={deleteProdHandler}>
-              Delete
-            </Button>
-          </div>
+          {user.authority !== "user" ? (
+            <div>
+              <LinkContainer to={`/product/edit/${data.id}`}>
+                <Button variant="dark">Edit</Button>
+              </LinkContainer>
+              <Button variant="danger" onClick={deleteProdHandler}>
+                Delete
+              </Button>
+            </div>
+          ) : null}
         </div>
       </Jumbotron>
     </div>
