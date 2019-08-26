@@ -114,16 +114,12 @@ const DetiledProd = props => {
               alt="avatar"
             />
             <Jumbotron className="commentsText">
-              <p>
-                <strong>
+              <p><strong>
                   {userList.map(value => {
                     if (value.id === comment.id_user) {
                       return value.username;
                     }
-                  })}
-                </strong>
-                {comment.text}
-              </p>
+                  })}</strong> {comment.text}</p>
             </Jumbotron>
           </div>
           <div className="comDate">
