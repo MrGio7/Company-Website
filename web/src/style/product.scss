@@ -43,3 +43,29 @@
   display: flex;
   justify-content: space-between;
 }
+
+.comments {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .commentsText{
+    padding: 0;
+    margin: 0;
+
+    p{
+      margin:0;
+    }
+  }
+}
+
+.comDate {
+
+  p {
+    font-size: 0.8rem;
+  }
+}

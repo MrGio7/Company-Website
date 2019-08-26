@@ -8,7 +8,7 @@ const DetiledProd = props => {
   const [data, setData] = useState({});
   const [user, setUser] = useState({});
   const [comments, setComments] = useState([]);
-  const [newComment, setNewComment] = useState([]);
+  const [userList, setUserList] = useState([]);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -44,6 +44,17 @@ const DetiledProd = props => {
       .get(`http://localhost:5000/api/comments/${id}`)
       .then(res => {
         setComments(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, [props.match.params.id]);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/users`)
+      .then(res => {
+        setUserList(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -95,20 +106,31 @@ const DetiledProd = props => {
           ) : null}
         </div>
       </Jumbotron>
-      <Jumbotron className="comments">
-        {comments.map((comment, index) => (
-          <div key={index}>
-            <div>
-              <h4>Comment:</h4>
-              <p>{comment.text}</p>
-            </div>
-
-            <div>
-              <h4>Created at:</h4> <p>{comment.created_at}</p>
-            </div>
+      {comments.map(comment => (
+        <div key={comment.id_user}>
+          <div className="comments">
+            <img
+              src="https://www.pinclipart.com/picdir/middle/200-2008697_account-customer-login-man-user-icon-login-icon.png"
+              alt="avatar"
+            />
+            <Jumbotron className="commentsText">
+              <p>
+                <strong>
+                  {userList.map(value => {
+                    if (value.id === comment.id_user) {
+                      return value.username;
+                    }
+                  })}
+                </strong>
+                {comment.text}
+              </p>
+            </Jumbotron>
           </div>
-        ))}
-      </Jumbotron>
+          <div className="comDate">
+            <p>{comment.created_at}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
