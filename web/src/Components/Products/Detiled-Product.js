@@ -7,6 +7,8 @@ import { LinkContainer } from "react-router-bootstrap";
 const DetiledProd = props => {
   const [data, setData] = useState({});
   const [user, setUser] = useState({});
+  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState([]);
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -29,6 +31,19 @@ const DetiledProd = props => {
       })
       .then(res => {
         setUser(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    const id = props.match.params.id;
+
+    axios
+      .get(`http://localhost:5000/api/comments/${id}`)
+      .then(res => {
+        setComments(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -79,6 +94,20 @@ const DetiledProd = props => {
             </div>
           ) : null}
         </div>
+      </Jumbotron>
+      <Jumbotron className="comments">
+        {comments.map((comment, index) => (
+          <div key={index}>
+            <div>
+              <h4>Comment:</h4>
+              <p>{comment.text}</p>
+            </div>
+
+            <div>
+              <h4>Created at:</h4> <p>{comment.created_at}</p>
+            </div>
+          </div>
+        ))}
       </Jumbotron>
     </div>
   );
