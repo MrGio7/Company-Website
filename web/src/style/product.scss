@@ -82,6 +82,7 @@
   display: flex;
   align-items: center;
   margin:0 1.4rem;
+  margin-bottom: 50px;
 
   img {
     width: 3rem;
@@ -89,4 +90,8 @@
     align-self: flex-start;
     border-radius: 50%;
   }
+}
+
+.commentForm {
+  width: 100%;
 }

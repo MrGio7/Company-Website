@@ -23,7 +23,13 @@ router.post("/add", (req, res) => {
   db("comments")
     .insert(comment)
     .then(saved => {
-      res.status(201).json(saved);
+      const id = saved.toString();
+      db("comments")
+        .where({ id })
+        .first()
+        .then(obj => {
+          res.status(201).json(obj);
+        });
     })
     .catch(err => {
       res.status(500).json(err);

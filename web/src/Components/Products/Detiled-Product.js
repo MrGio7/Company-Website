@@ -80,8 +80,8 @@ const DetiledProd = props => {
 
   const changeHandler = ev => {
     ev.persist();
-    setNewComment(user => ({
-      ...user,
+    setNewComment(comment => ({
+      ...newComment,
       id_user: user.id,
       id_product: props.match.params.id,
       [ev.target.name]: ev.target.value
@@ -90,7 +90,15 @@ const DetiledProd = props => {
 
   const newCommentHandler = ev => {
     ev.preventDefault();
-    axios.post(`http://localhost:5000/api/comments/add`, newComment);
+    axios
+      .post(`http://localhost:5000/api/comments/add`, newComment)
+      .then(res => {
+        setNewComment({text: ''});
+        setComments([...comments, res.data]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
@@ -123,7 +131,7 @@ const DetiledProd = props => {
         </div>
       </Jumbotron>
       {comments.map(comment => (
-        <div key={comment.id_user}>
+        <div key={comment.id}>
           <div className="comments">
             <img
               src="https://www.pinclipart.com/picdir/middle/200-2008697_account-customer-login-man-user-icon-login-icon.png"
@@ -152,7 +160,15 @@ const DetiledProd = props => {
           src="https://www.pinclipart.com/picdir/middle/200-2008697_account-customer-login-man-user-icon-login-icon.png"
           alt="avatar"
         />
-        <Form.Control type="text" placeholder="Normal text" />
+        <Form onSubmit={newCommentHandler} className="commentForm">
+          <Form.Control
+            type="text"
+            placeholder="Write a comment..."
+            name="text"
+            value={setNewComment.text}
+            onChange={changeHandler}
+          />
+        </Form>
       </div>
     </div>
   );
