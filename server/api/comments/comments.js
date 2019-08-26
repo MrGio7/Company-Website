@@ -17,5 +17,17 @@ router.get("/:id", (req, res) => {
     });
 });
 
+router.post("/add", (req, res) => {
+  const comment = req.body;
+
+  db("comments")
+    .insert(comment)
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
