@@ -8,7 +8,7 @@ router.get("/:id", (req, res) => {
   const id = req.params.id;
 
   db("comments")
-    .where({ id: id_product })
+    .where({ id_product: id })
     .then(comments => {
       res.status(201).json(comments);
     })
@@ -17,4 +17,5 @@ router.get("/:id", (req, res) => {
     });
 });
 
-export default router;
+
+module.exports = router;

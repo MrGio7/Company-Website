@@ -5,6 +5,7 @@ const cors = require("cors");
 const usersRouter = require("./api/users/users-router.js");
 const productRouter = require("./api/product/product-router.js");
 const authRouter = require("./api/users/auth-router.js");
+const commentsRouter = require("./api/comments/comments.js");
 
 const server = express();
 
@@ -15,6 +16,7 @@ server.use(cors());
 server.use("/api/users", usersRouter);
 server.use("/api/product", productRouter);
 server.use("/api/auth", authRouter);
+server.use("/api/comments", commentsRouter);
 
 server.get("/", (req, res) => {
   res.send("server is up");
