@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { Jumbotron, Button } from "react-bootstrap";
+import { Jumbotron, Button, Form } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const DetiledProd = props => {
@@ -9,6 +9,7 @@ const DetiledProd = props => {
   const [user, setUser] = useState({});
   const [comments, setComments] = useState([]);
   const [userList, setUserList] = useState([]);
+  const [newComment, setNewComment] = useState({});
 
   useEffect(() => {
     const id = props.match.params.id;
@@ -77,6 +78,21 @@ const DetiledProd = props => {
       });
   };
 
+  const changeHandler = ev => {
+    ev.persist();
+    setNewComment(user => ({
+      ...user,
+      id_user: user.id,
+      id_product: props.match.params.id,
+      [ev.target.name]: ev.target.value
+    }));
+  };
+
+  const newCommentHandler = ev => {
+    ev.preventDefault();
+    axios.post(`http://localhost:5000/api/comments/add`, newComment);
+  };
+
   return (
     <div>
       <Jumbotron className="detiled">
@@ -114,12 +130,16 @@ const DetiledProd = props => {
               alt="avatar"
             />
             <Jumbotron className="commentsText">
-              <p><strong>
+              <p>
+                <strong>
                   {userList.map(value => {
                     if (value.id === comment.id_user) {
                       return value.username;
                     }
-                  })}</strong> {comment.text}</p>
+                  })}{" "}
+                </strong>
+                {comment.text}
+              </p>
             </Jumbotron>
           </div>
           <div className="comDate">
@@ -127,6 +147,13 @@ const DetiledProd = props => {
           </div>
         </div>
       ))}
+      <div className="newComment">
+        <img
+          src="https://www.pinclipart.com/picdir/middle/200-2008697_account-customer-login-man-user-icon-login-icon.png"
+          alt="avatar"
+        />
+        <Form.Control type="text" placeholder="Normal text" />
+      </div>
     </div>
   );
 };
