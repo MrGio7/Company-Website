@@ -27,7 +27,7 @@ router.put("/", (req, res) => {
       db("likes")
         .insert(body)
         .then(() => {
-          Data.then(data => {
+          db("likes").then(data => {
             res.status(200).json(data);
           });
         })
@@ -41,7 +41,7 @@ router.put("/", (req, res) => {
         .where({ id_user, id_product })
         .update({ likes })
         .then(() => {
-          Data.then(data => {
+          db("likes").then(data => {
             res.status(200).json(data);
           });
         });

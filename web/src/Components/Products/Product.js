@@ -9,6 +9,9 @@ import "../../style/product.scss";
 
 const Product = () => {
   const [data, setData] = useState([]);
+  const [likes, setLikes] = useState({});
+  const [counter, setCounter] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     axios
@@ -22,6 +25,49 @@ const Product = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/auth/user`, {
+        headers: { token: localStorage.token }
+      })
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/likes`)
+      .then(res => {
+        setCounter(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+
+  const likeHandler = ev => {
+    ev.preventDefault();
+    const body = { id_product: ev.target.id, id_user: user.id };
+
+    axios
+      .put(`http://localhost:5000/api/likes`, body)
+      .then(res => {
+        setCounter(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const find = (prodId, userId) =>
+    counter.find(
+      value => value.id_product === prodId && value.id_user === userId
+    );
 
   return (
     <div>
@@ -52,8 +98,15 @@ const Product = () => {
                     <h5>85</h5>
                     <img
                       className="likeBtn"
-                      src={dislikeImg}
+                      id={item.id}
+                      src={
+                        find(item.id, user.id) &&
+                        find(item.id, user.id).likes === 1
+                          ? likeImg
+                          : dislikeImg
+                      }
                       alt="like button"
+                      onClick={likeHandler}
                     />
                   </div>
                 </div>
