@@ -36,4 +36,20 @@ router.post("/add", (req, res) => {
     });
 });
 
+router.delete("/:id", (req, res) => {
+  const id = req.body;
+
+  db("comments")
+    .where({ id })
+    .del()
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: `comment has been successfully deleted` });
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 module.exports = router;
