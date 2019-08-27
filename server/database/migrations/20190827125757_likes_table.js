@@ -23,7 +23,7 @@ exports.up = function(knex) {
     tbl
       .integer("likes")
       .notNullable()
-      .defaultTo(0);
+      .defaultTo(1);
   });
 };
 

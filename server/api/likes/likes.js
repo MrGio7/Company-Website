@@ -15,4 +15,41 @@ router.get("/", (req, res) => {
     });
 });
 
+router.put("/", (req, res) => {
+  const body = req.body;
+  const { id_user, id_product } = req.body;
+  const Data = db("likes")
+    .where({ id_user, id_product })
+    .first();
+
+  Data.then(item => {
+    if (item === undefined) {
+      db("likes")
+        .insert(body)
+        .then(() => {
+          Data.then(data => {
+            res.status(200).json(data);
+          });
+        })
+        .catch(err => {
+          res.status(500).json(err);
+        });
+    } else {
+      const { likes } = { likes: item.likes === 0 ? 1 : 0 };
+
+      db("likes")
+        .where({ id_user, id_product })
+        .update({ likes })
+        .then(() => {
+          Data.then(data => {
+            res.status(200).json(data);
+          });
+        });
+    }
+  }).catch(err => {
+    console.log(err);
+    res.status(500).json({ message: `Data error` });
+  });
+});
+
 module.exports = router;
