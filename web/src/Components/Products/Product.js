@@ -9,8 +9,7 @@ import "../../style/product.scss";
 
 const Product = () => {
   const [data, setData] = useState([]);
-  const [likes, setLikes] = useState({});
-  const [counter, setCounter] = useState([]);
+  const [counter, setCounter] = useState([0]);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -95,7 +94,13 @@ const Product = () => {
                     <Button variant="primary">View Detiled</Button>
                   </LinkContainer>
                   <div className="likeSection">
-                    <h5>85</h5>
+                    <h5>
+                      {counter
+                        .map(each => {
+                          return each.id_product === item.id ? each.likes : 0;
+                        })
+                        .reduce((acc, cur) => acc + cur)}
+                    </h5>
                     <img
                       className="likeBtn"
                       id={item.id}
