@@ -94,7 +94,9 @@ const DetiledProd = props => {
     const form = ev.target;
 
     axios
-      .post(`http://localhost:5000/api/comments/add`, newComment)
+      .post(`http://localhost:5000/api/comments/add`, newComment, {
+        headers: { token: localStorage.token }
+      })
       .then(res => {
         setComments([...comments, res.data]);
         setNewComment({ text: "" });

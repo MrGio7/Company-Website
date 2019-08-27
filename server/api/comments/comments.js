@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const knex = require("knex");
 const knexConfig = require("../../knexfile.js");
+const restricted = require("../users/restricted-middleware.js");
 
 const db = knex(knexConfig.development);
 
@@ -17,7 +18,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/add", (req, res) => {
+router.post("/add", restricted, (req, res) => {
   const comment = req.body;
 
   db("comments")
@@ -36,7 +37,7 @@ router.post("/add", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", restricted, (req, res) => {
   const id = req.params.id;
 
   db("comments")
