@@ -7,9 +7,30 @@
     margin-top: 20px;
   }
 
+  
+
   .card-img-top {
     height: 300px;
   }
+
+  .cardBottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .likeSection{
+      display: flex;
+      align-items: center;
+
+      .likeBtn{
+        align-self: flex-end;
+        height: 2rem;
+        margin-left:0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+
 }
 
 .detiled {

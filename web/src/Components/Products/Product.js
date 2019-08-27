@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Button, Alert } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import likeImg from "../../style/img/like.png";
+import dislikeImg from "../../style/img/dislike.png";
 
 import "../../style/product.scss";
 
@@ -42,9 +44,19 @@ const Product = () => {
               <Card.Body>
                 <Card.Title>{item.name}</Card.Title>
                 <Card.Text>Price: {item.price}$</Card.Text>
-                <LinkContainer to={`/product/${item.id}`}>
-                  <Button variant="primary">View Detiled</Button>
-                </LinkContainer>
+                <div className="cardBottom">
+                  <LinkContainer to={`/product/${item.id}`}>
+                    <Button variant="primary">View Detiled</Button>
+                  </LinkContainer>
+                  <div className="likeSection">
+                    <h5>85</h5>
+                    <img
+                      className="likeBtn"
+                      src={dislikeImg}
+                      alt="like button"
+                    />
+                  </div>
+                </div>
               </Card.Body>
             </Card>
           ))}
