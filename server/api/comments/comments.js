@@ -37,7 +37,7 @@ router.post("/add", (req, res) => {
 });
 
 router.delete("/:id", (req, res) => {
-  const id = req.body;
+  const id = req.params.id;
 
   db("comments")
     .where({ id })
