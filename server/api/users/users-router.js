@@ -5,10 +5,14 @@ const restricted = require("./restricted-middleware.js");
 
 const db = knex(knexConfig.development);
 
-router.get("/", restricted, (req, res) => {
+router.get("/", (req, res) => {
   db("users")
     .then(users => {
-      res.status(201).json(users);
+      res.status(201).json(
+        users.map(user => {
+          return { id: user.id, username: user.username };
+        })
+      );
     })
     .catch(err => {
       res.status(500).json(err);
