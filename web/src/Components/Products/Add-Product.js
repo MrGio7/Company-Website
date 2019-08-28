@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-import "../style/Add-Product.scss";
+import "../../style/Add-Product.scss";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({

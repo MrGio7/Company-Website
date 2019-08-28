@@ -14,15 +14,32 @@
 
 .detiled {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   margin: 1.4rem;
-
-  img {
-    border-radius: 5px;
-  }
 
   .description {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .detText {
+      width: 70%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
   }
+
+  .btn {
+    margin-top: 3rem;
+    align-self: flex-start;
+  }
+}
+
+.detiledBtns {
+  display: flex;
+  justify-content: space-between;
 }

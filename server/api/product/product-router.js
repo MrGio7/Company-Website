@@ -20,6 +20,7 @@ router.get("/:id", restricted, (req, res) => {
 
   db("product")
     .where({ id })
+    .first()
     .then(saved => {
       res.status(201).json(saved);
     })
@@ -38,6 +39,29 @@ router.post("/add", (req, res) => {
     })
     .catch(err => {
       res.status(500).json(err);
+    });
+});
+
+router.put("/:id", restricted, (req, res) => {
+  const id = req.params.id;
+  const { name, description, img, price } = req.body;
+
+  console.log(req.body);
+
+  db("product")
+    .where({ id })
+    .update({ name, description, img, price })
+    .then(item => {
+      console.log(req.body);
+      if (res === 0) {
+        res.status(404).json({ message: `No posts by that id` });
+      } else {
+        res.status(200).json(item);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: `Data error` });
     });
 });
 

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Card, Button, Alert } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-import "../style/product.scss";
+import "../../style/product.scss";
 
 const Product = () => {
   const [data, setData] = useState([]);
