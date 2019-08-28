@@ -15,6 +15,19 @@ router.get("/", restricted, (req, res) => {
     });
 });
 
+router.get("/:id", restricted, (req, res) => {
+  const id = req.params.id;
+
+  db("product")
+    .where({ id })
+    .then(saved => {
+      res.status(201).json(saved);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 router.post("/add", (req, res) => {
   const product = req.body;
 

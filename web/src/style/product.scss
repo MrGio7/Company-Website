@@ -2,9 +2,27 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px 0;
 
-  .card-img-top{
+  .card {
+    margin-top: 20px;
+  }
+
+  .card-img-top {
     height: 300px;
+  }
+}
+
+.detiled {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.4rem;
+
+  img {
+    border-radius: 5px;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
   }
 }

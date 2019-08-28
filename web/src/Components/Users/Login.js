@@ -5,7 +5,7 @@ import { LinkContainer } from "react-router-bootstrap";
 
 import "../../style/Users/Login.scss";
 
-const Login = () => {
+const Login = prop => {
   const [user, setUser] = useState({ username: "", password: "" });
 
   const changeHandler = ev => {
@@ -24,7 +24,7 @@ const Login = () => {
         console.log(res);
         console.log(res.data);
         localStorage.setItem("token", res.data.token);
-        window.location.pathname = "/home";
+        prop.history.push("/home");
       })
       .catch(err => {
         console.log(err);
