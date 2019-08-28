@@ -1,14 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 import "../style/Navigation.scss";
 
 const Navigation = () => {
+  const [user, setUser] = useState({});
+
   const LogOut = () => {
     localStorage.removeItem("token");
     window.location.pathname = "/home";
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/auth/user`, {
+        headers: { token: localStorage.token }
+      })
+      .then(res => {
+        setUser(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
@@ -31,7 +47,7 @@ const Navigation = () => {
           </LinkContainer>
         </Nav.Item>
 
-        {!localStorage.token ? null : (
+        {user.authority === "user" || !localStorage.token ? null : (
           <Nav.Item>
             <LinkContainer to="/addproduct">
               <Nav.Link eventKey="link-4">Add Product</Nav.Link>

@@ -26,19 +26,12 @@ const EditProduct = props => {
         headers: { token: localStorage.token }
       })
       .then(res => {
-        res.data.map(item =>
-          setData({
-            name: item.name,
-            description: item.description,
-            img: item.img,
-            price: item.price
-          })
-        );
+        setData(res.data);
       })
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   const editProdHandler = ev => {
     ev.preventDefault();
