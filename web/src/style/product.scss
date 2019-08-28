@@ -1,0 +1,10 @@
+.productPage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px 0;
+
+  .card-img-top{
+    height: 300px;
+  }
+}
