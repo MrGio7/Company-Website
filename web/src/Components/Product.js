@@ -1,43 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Card, Button } from "react-bootstrap";
 
 import "../style/product.scss";
 
 const Product = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("this is very good product");
-  const [price, setPrice] = useState("80$");
+  const [product, setProduct] = useState({
+    name: "",
+    description: "",
+    img: "",
+    price: ""
+  });
 
-  const customList = [
-    {
-      name: "myne",
-      description: "this is very good product",
-      img: 'https://picsum.photos/id/237/200/300',
-      price: "80$"
-    },
-    {
-      name: "nya",
-      description: "this is not  product",
-      img: 'https://picsum.photos/id/235/200/300',
-      price: "0$"
-    },
-    {
-      name: "jimi",
-      description: "are u kiddin me",
-      img: 'https://picsum.photos/id/232/200/300',
-      price: "2000$"
-    },
-    {
-      name: "gulie",
-      description: "god damn it",
-      img: 'https://picsum.photos/id/231/200/300',
-      price: "2$"
-    }
-  ];
+  const [data, setData] = useState({ productList: [] });
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/product`, {
+        headers: { token: localStorage.token }
+      })
+      .then(res => {
+        setData(() => ({ productList: res.data }));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
 
   return (
     <div className="productPage">
-      {customList.map((item, index) => (
+      {data.productList.map((item, index) => (
         <Card style={{ width: "18rem" }} key={index}>
           <Card.Img variant="top" src={item.img} />
           <Card.Body>
