@@ -1,0 +1,34 @@
+.aboutPage {
+  background-image: url("../style//img/background.jpg");
+  height: 600px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  .carousel {
+    max-width: 40rem;
+    top: 4rem;
+    left: 2rem;
+
+    .carousel-inner {
+      border-radius: 5px;
+    }
+  }
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+
+  div {
+    padding: 0 3rem;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+  }
+
+  h5 {
+    cursor: pointer;
+  }
+}

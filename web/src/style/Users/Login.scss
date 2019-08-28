@@ -1,4 +1,9 @@
 .loginPage {
   width: 30%;
   margin: 20px auto;
+
+  .btns {
+    display: flex;
+    justify-content: space-between;
+  }
 }
